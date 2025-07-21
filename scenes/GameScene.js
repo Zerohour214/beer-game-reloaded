@@ -5,6 +5,15 @@ import { InputSystem } from '../systems/InputSystem.js';
 import { ItemSystem } from '../systems/ItemSystem.js';
 import { CollisionSystem } from '../systems/CollisionSystem.js';
 
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+    });
+}
+
 export class GameScene extends Scene {
     async init(game) {
         super.init(game);
@@ -14,16 +23,23 @@ export class GameScene extends Scene {
         const canvas = document.getElementById('game-canvas');
         const ctx = canvas.getContext('2d');
 
+        // Load images
+        const playerImg = await loadImage('assets/player.svg');
+        const itemImg = await loadImage('assets/item.svg');
+
         // Create player
         const player = new Player(
-            canvas.width / 2 - 50, canvas.height - 50,
-            100, 30
+            canvas.width / 2 - playerImg.width / 2,
+            canvas.height - playerImg.height,
+            playerImg.width,
+            playerImg.height,
+            playerImg
         );
         this.addEntity(player);
 
         // Add systems
         this.addSystem(new InputSystem(canvas));
-        this.addSystem(new ItemSystem(canvas, this.scoreRef));
+        this.addSystem(new ItemSystem(canvas, this.scoreRef, itemImg));
         this.addSystem(new CollisionSystem(canvas, this.scoreRef));
         this.addSystem(new RenderSystem(ctx, this.scoreRef));
     }

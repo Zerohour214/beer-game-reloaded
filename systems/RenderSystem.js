@@ -10,15 +10,23 @@ export class RenderSystem {
 
         // Draw items
         entities.filter(e => e.type === 'item').forEach(item => {
-            ctx.fillStyle = 'orange';
-            ctx.fillRect(item.x, item.y, item.width, item.height);
+            if (item.image) {
+                ctx.drawImage(item.image, item.x, item.y, item.width, item.height);
+            } else {
+                ctx.fillStyle = 'orange';
+                ctx.fillRect(item.x, item.y, item.width, item.height);
+            }
         });
 
         // Draw player
         const player = entities.find(e => e.type === 'player');
         if (player) {
-            ctx.fillStyle = 'blue';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
+            if (player.image) {
+                ctx.drawImage(player.image, player.x, player.y, player.width, player.height);
+            } else {
+                ctx.fillStyle = 'blue';
+                ctx.fillRect(player.x, player.y, player.width, player.height);
+            }
         }
 
         // Draw score (top right)
