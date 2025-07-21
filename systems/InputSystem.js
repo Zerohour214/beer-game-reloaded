@@ -14,9 +14,12 @@ export class InputSystem {
         if (!player) return;
         
         // Keyboard controls. Set player.speed based on input
-        if (input.isKeyPressed('ArrowLeft')) {
+        const left = input.isKeyPressed('ArrowLeft');
+        const right = input.isKeyPressed('ArrowRight');
+
+        if (left) {
             player.speed = -player.maxSpeed;
-        } else if (input.isKeyPressed('ArrowRight')) {
+        } else if (right) {
             player.speed = player.maxSpeed;
         } else {
             player.speed = 0;
