@@ -24,9 +24,29 @@ export class GameScene extends Scene {
         const ctx = canvas.getContext('2d');
 
         // Load images
-        const playerImg = await loadImage('assets/player.svg');
-        const itemImg = await loadImage('assets/item.svg');
-
+        let playerImg, itemImg;
+        try {
+            playerImg = await loadImage('assets/player.svg');
+        } catch (error) {
+            console.error('Failed to load player image:', error);
+            playerImg = document.createElement('canvas');
+            playerImg.width = 50; // Default width
+            playerImg.height = 50; // Default height
+            const ctx = playerImg.getContext('2d');
+            ctx.fillStyle = 'gray'; // Placeholder color
+            ctx.fillRect(0, 0, playerImg.width, playerImg.height);
+        }
+        try {
+            itemImg = await loadImage('assets/item.svg');
+        } catch (error) {
+            console.error('Failed to load item image:', error);
+            itemImg = document.createElement('canvas');
+            itemImg.width = 30; // Default width
+            itemImg.height = 30; // Default height
+            const ctx = itemImg.getContext('2d');
+            ctx.fillStyle = 'gray'; // Placeholder color
+            ctx.fillRect(0, 0, itemImg.width, itemImg.height);
+        }
         // Create player
         const player = new Player(
             canvas.width / 2 - playerImg.width / 2,
