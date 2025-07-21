@@ -83,7 +83,7 @@ export class GameScene extends Scene {
 
         // Add systems
         this.addSystem(new InputSystem(canvas));
-        this.addSystem(new ItemSystem(canvas, this.scoreRef, itemImg));
+        this.addSystem(new ItemSystem(canvas, this.scoreRef, this.levelRef, itemImg));
         this.addSystem(new CollisionSystem(canvas, this.scoreRef));
         this.addSystem(new LevelSystem(this.scoreRef, this.levelRef));
         this.addSystem(new RenderSystem(ctx, this.scoreRef, this.levelRef, this.ui));

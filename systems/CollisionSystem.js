@@ -16,6 +16,7 @@ export class CollisionSystem {
                     this.scoreRef.value += entity.score;
                     entities.splice(i, 1); // remove caught item
                 } else if (entity.y > this.canvas.height) {
+                    this.scoreRef.value -= 5; // penalty for missed item
                     entities.splice(i, 1); // remove missed item
                 }
             }
