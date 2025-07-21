@@ -25,8 +25,6 @@ export class InputSystem {
             player.speed = 0;
         }
 
-        player.x += player.speed * dt;
-
         // Mouse controls
         if (this.mouseX !== null) {
         // Keyboard controls
