@@ -25,18 +25,8 @@ export class InputSystem {
             player.speed = 0;
         }
 
-        // Mouse controls
-        if (this.mouseX !== null) {
-        // Keyboard controls
-        const left = input.isKeyPressed('ArrowLeft');
-        const right = input.isKeyPressed('ArrowRight');
-
-        if (left) {
-            player.x -= player.speed * dt;
-        }
-        if (right) {
-            player.x += player.speed * dt;
-        }
+        // Apply keyboard movement
+        player.x += player.speed * dt;
 
         // Mouse controls (only when no arrow keys pressed)
         if (!left && !right && this.mouseX !== null) {
