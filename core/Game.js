@@ -9,6 +9,7 @@ export class Game {
         this.running = false;
         this.frameId = null;
         this.helpElement = null;
+        this.pausedBeforeHelp = false;
     }
 
     async start() {
@@ -78,6 +79,15 @@ export class Game {
     toggleHelp() {
         if (!this.helpElement) return;
         const showing = this.helpElement.style.display === 'block';
-        this.helpElement.style.display = showing ? 'none' : 'block';
+        if (showing) {
+            // Closing help overlay - restore previous pause state
+            this.helpElement.style.display = 'none';
+            this.paused = this.pausedBeforeHelp;
+        } else {
+            // Opening help overlay - remember pause state and pause game
+            this.pausedBeforeHelp = this.paused;
+            this.paused = true;
+            this.helpElement.style.display = 'block';
+        }
     }
 }

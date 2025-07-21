@@ -12,7 +12,7 @@ export class InputSystem {
     update(entities, dt, input) {
         const player = entities.find(e => e.type === 'player');
         if (!player) return;
-
+        
         // Keyboard controls. Set player.speed based on input
         if (input.isKeyPressed('ArrowLeft')) {
             player.speed = -player.maxSpeed;
@@ -26,6 +26,19 @@ export class InputSystem {
 
         // Mouse controls
         if (this.mouseX !== null) {
+        // Keyboard controls
+        const left = input.isKeyPressed('ArrowLeft');
+        const right = input.isKeyPressed('ArrowRight');
+
+        if (left) {
+            player.x -= player.speed * dt;
+        }
+        if (right) {
+            player.x += player.speed * dt;
+        }
+
+        // Mouse controls (only when no arrow keys pressed)
+        if (!left && !right && this.mouseX !== null) {
             player.x = this.mouseX - player.width / 2;
         }
 
