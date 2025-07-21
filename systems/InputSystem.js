@@ -14,15 +14,18 @@ export class InputSystem {
         if (!player) return;
 
         // Keyboard controls
-        if (input.isKeyPressed('ArrowLeft')) {
+        const left = input.isKeyPressed('ArrowLeft');
+        const right = input.isKeyPressed('ArrowRight');
+
+        if (left) {
             player.x -= player.speed * dt;
         }
-        if (input.isKeyPressed('ArrowRight')) {
+        if (right) {
             player.x += player.speed * dt;
         }
 
-        // Mouse controls
-        if (this.mouseX !== null) {
+        // Mouse controls (only when no arrow keys pressed)
+        if (!left && !right && this.mouseX !== null) {
             player.x = this.mouseX - player.width / 2;
         }
 
