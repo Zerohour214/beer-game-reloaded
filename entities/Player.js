@@ -4,7 +4,11 @@ export class Player {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.speed = 400; // px/s
+        // Current horizontal speed in pixels/second
+        this.speed = 0;
+        // Maximum movement speed in pixels/second
+        // Tweak this value to make the player move faster or slower
+        this.maxSpeed = 400;
         this.type = 'player';
     }
 }
