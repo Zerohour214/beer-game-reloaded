@@ -1,7 +1,12 @@
 export class RenderSystem {
-    constructor(context, scoreRef) {
+    constructor(context, scoreRef, levelRef, ui = {}) {
         this.ctx = context;
         this.scoreRef = scoreRef;
+        this.levelRef = levelRef;
+        this.scoreEl = ui.score || null;
+        this.levelEl = ui.level || null;
+        this.imagesEl = ui.images || null;
+        this.currentLevel = null;
     }
 
     render(entities) {
@@ -29,10 +34,30 @@ export class RenderSystem {
             }
         }
 
-        // Draw score (top right)
-        ctx.fillStyle = '#fff';
-        ctx.font = '20px Arial';
-        ctx.textAlign = 'right';
-        ctx.fillText(`Score: ${this.scoreRef.value}`, ctx.canvas.width - 20, 30);
+        if (this.scoreEl) {
+            this.scoreEl.textContent = `Score: ${this.scoreRef.value}`;
+        }
+
+        if (this.levelEl) {
+            this.levelEl.textContent = `Level: ${this.levelRef.value}`;
+        }
+
+        if (this.imagesEl && this.currentLevel !== this.levelRef.value) {
+            this.currentLevel = this.levelRef.value;
+            this._loadLevelImages(this.currentLevel);
+        }
+    }
+
+    _loadLevelImages(level) {
+        if (!this.imagesEl) return;
+        this.imagesEl.innerHTML = '';
+        for (let i = 1; i <= 3; i++) {
+            const img = new Image();
+            img.onload = () => {
+                this.imagesEl.appendChild(img);
+            };
+            img.onerror = () => {};
+            img.src = `assets/level/img_${level}.png`;
+        }
     }
 }

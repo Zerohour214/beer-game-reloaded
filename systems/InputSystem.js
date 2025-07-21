@@ -27,7 +27,14 @@ export class InputSystem {
 
         // Mouse controls (only when no arrow keys pressed)
         if (!left && !right && this.mouseX !== null) {
-            player.x = this.mouseX - player.width / 2;
+            const targetX = this.mouseX - player.width / 2;
+            const dx = targetX - player.x;
+            const maxMove = player.speed * dt;
+            if (Math.abs(dx) <= maxMove) {
+                player.x = targetX;
+            } else {
+                player.x += Math.sign(dx) * maxMove;
+            }
         }
 
         // Clamp player within bounds

@@ -4,6 +4,7 @@ import { RenderSystem } from '../systems/RenderSystem.js';
 import { InputSystem } from '../systems/InputSystem.js';
 import { ItemSystem } from '../systems/ItemSystem.js';
 import { CollisionSystem } from '../systems/CollisionSystem.js';
+import { LevelSystem } from '../systems/LevelSystem.js';
 
 function loadImage(src) {
     return new Promise((resolve, reject) => {
@@ -18,7 +19,13 @@ export class GameScene extends Scene {
     async init(game) {
         super.init(game);
         this.scoreRef = { value: 0 };
+        this.levelRef = { value: 1 };
 
+        this.ui = {
+            score: document.getElementById('score'),
+            level: document.getElementById('level'),
+            images: document.getElementById('level-images')
+        };
         // Canvas context
         const canvas = document.getElementById('game-canvas');
         const ctx = canvas.getContext('2d');
@@ -78,6 +85,7 @@ export class GameScene extends Scene {
         this.addSystem(new InputSystem(canvas));
         this.addSystem(new ItemSystem(canvas, this.scoreRef, itemImg));
         this.addSystem(new CollisionSystem(canvas, this.scoreRef));
-        this.addSystem(new RenderSystem(ctx, this.scoreRef));
+        this.addSystem(new LevelSystem(this.scoreRef, this.levelRef));
+        this.addSystem(new RenderSystem(ctx, this.scoreRef, this.levelRef, this.ui));
     }
 }

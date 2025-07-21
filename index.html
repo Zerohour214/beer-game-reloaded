@@ -5,7 +5,36 @@
     <title>Catch Game</title>
     <style>
         body { margin: 0; background: #222; }
-        canvas { background: #222; display: block; margin: 0 auto; }
+        #game-container { display: flex; position: relative; }
+        canvas {
+            background: url('assets/background.png') center/cover no-repeat;
+            display: block;
+            margin: 0 auto;
+        }
+        #sidebar {
+            width: 200px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        #status {
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            height: 33%;
+        }
+        #level-images {
+            height: 67%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #level-images img {
+            max-width: 100%;
+            margin-bottom: 5px;
+        }
         #help-overlay {
             display: none;
             position: absolute;
