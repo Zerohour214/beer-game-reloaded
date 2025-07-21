@@ -51,13 +51,11 @@ export class RenderSystem {
     _loadLevelImages(level) {
         if (!this.imagesEl) return;
         this.imagesEl.innerHTML = '';
-        for (let i = 1; i <= 3; i++) {
-            const img = new Image();
-            img.onload = () => {
-                this.imagesEl.appendChild(img);
-            };
-            img.onerror = () => {};
-            img.src = `assets/level/img_${level}.png`;
-        }
+        const img = new Image();
+        img.onload = () => {
+            this.imagesEl.appendChild(img);
+        };
+        img.onerror = () => {};
+        img.src = `assets/level/img_${level}.png`;
     }
 }
