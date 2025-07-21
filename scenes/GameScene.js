@@ -25,28 +25,45 @@ export class GameScene extends Scene {
 
         // Load images
         let playerImg, itemImg;
+
+        // Utility to resize any loaded image to a canvas of (w, h)
+        function resizeImageToCanvas(img, w, h) {
+            const c = document.createElement('canvas');
+            c.width = w;
+            c.height = h;
+            const ctx = c.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            return c;
+        }
+
         try {
-            playerImg = await loadImage('assets/player.svg');
+            let loadedPlayerImg = await loadImage('assets/beer-barrel.png');
+        // Scale to 50x50
+            playerImg = resizeImageToCanvas(loadedPlayerImg, 80, 80);
         } catch (error) {
             console.error('Failed to load player image:', error);
             playerImg = document.createElement('canvas');
-            playerImg.width = 50; // Default width
-            playerImg.height = 50; // Default height
+            playerImg.width = 40;
+            playerImg.height = 40;
             const ctx = playerImg.getContext('2d');
-            ctx.fillStyle = 'gray'; // Placeholder color
-            ctx.fillRect(0, 0, playerImg.width, playerImg.height);
+            ctx.fillStyle = 'gray';
+            ctx.fillRect(0, 0, 40, 40);
         }
+
         try {
-            itemImg = await loadImage('assets/item.svg');
+            let loadedItemImg = await loadImage('assets/beer-bottle.png');
+        // Scale to 50x80
+            itemImg = resizeImageToCanvas(loadedItemImg, 50, 80);
         } catch (error) {
             console.error('Failed to load item image:', error);
             itemImg = document.createElement('canvas');
-            itemImg.width = 30; // Default width
-            itemImg.height = 30; // Default height
+            itemImg.width = 50;
+            itemImg.height = 80;
             const ctx = itemImg.getContext('2d');
-            ctx.fillStyle = 'gray'; // Placeholder color
-            ctx.fillRect(0, 0, itemImg.width, itemImg.height);
+            ctx.fillStyle = 'gray';
+            ctx.fillRect(0, 0, 50, 80);
         }
+
         // Create player
         const player = new Player(
             canvas.width / 2 - playerImg.width / 2,
