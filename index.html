@@ -6,10 +6,42 @@
     <style>
         body { margin: 0; background: #222; }
         canvas { background: #222; display: block; margin: 0 auto; }
+        #help-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #help-overlay h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+        #help-overlay ul {
+            list-style: none;
+            padding-left: 0;
+        }
     </style>
 </head>
 <body>
 <canvas id="game-canvas" width="800" height="600"></canvas>
+<div id="help-overlay">
+    <h1>Help</h1>
+    <p>Controls:</p>
+    <ul>
+        <li>Arrow keys / Mouse - move player</li>
+        <li>P - pause/resume the game</li>
+        <li>Escape - exit the game</li>
+        <li>H - toggle this help</li>
+    </ul>
+    <p>Press H to close</p>
+</div>
 <script type="module" src="./main.js"></script>
 </body>
 </html>
