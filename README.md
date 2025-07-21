@@ -1,7 +1,7 @@
 # beer-game-reloaded
 
-Simple catch game demo. Use the mouse or arrow keys to move the player.
-
+Beer and strip. Catch sum beers. watch anime grills strip :V
+https://raitospace.duckdns.org/beer-game/
 ## Controls
 
 - **Arrow keys / Mouse** - move player left and right.
