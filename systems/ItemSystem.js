@@ -26,7 +26,6 @@ export class ItemSystem {
 
         // Move items down and apply speed for current level
         entities.filter(e => e.type === 'item').forEach(item => {
-            item.speed = currentSpeed;
             item.y += item.speed * dt;
         });
     }
