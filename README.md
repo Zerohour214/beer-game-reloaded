@@ -14,3 +14,5 @@ Simple catch game demo. Use the mouse or arrow keys to move the player.
 The graphics for the player box and falling items are loaded from
 `assets/player.svg` and `assets/item.svg`. Replace these files with your own
 images (PNG, SVG, etc.) to customise how the game looks.
+=======
+- **H** - toggle the help overlay (pauses the game).
