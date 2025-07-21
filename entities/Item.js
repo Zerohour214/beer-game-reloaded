@@ -5,8 +5,8 @@ export class Item {
         this.id = idCounter++;
         this.x = x;
         this.y = y;
-        this.width = width || (image ? image.width : 0);
-        this.height = height || (image ? image.height : 0);
+        this.width = width !== null && width !== undefined ? width : (image ? image.width : 0);
+        this.height = height !== null && height !== undefined ? height : (image ? image.height : 0);
         this.speed = 200; // px/s
         this.score = score;
         this.type = 'item';
