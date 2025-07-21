@@ -2,8 +2,7 @@ export class Player {
     constructor(x, y, width, height, image = null) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
+// Removed redundant direct assignments for width and height.
         // Current horizontal speed in pixels/second
         this.speed = 0;
         // Maximum movement speed in pixels/second
